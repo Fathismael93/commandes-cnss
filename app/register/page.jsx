@@ -105,11 +105,17 @@ const RegisterPage = () => {
 
     // Simulation d'inscription
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      // Ici vous intégreriez votre logique d'inscription
-      console.log("Inscription réussie", formData);
-      // Redirection après inscription réussie
-      // router.push('/login');
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        router.push("/login");
+      }
     } catch (error) {
       setErrors({
         general: "Erreur lors de l'inscription. Veuillez réessayer.",
