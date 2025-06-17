@@ -4,7 +4,7 @@ import User from "@/backend/models/user";
 export async function POST(req) {
   await dbConnect();
 
-  const { email, password } = await req.json();
+  const { name, email, phone, password } = await req.json();
   if (!email || !password) {
     return new Response("Email and password are required", { status: 400 });
   }
@@ -15,7 +15,7 @@ export async function POST(req) {
       return new Response("User already exists", { status: 409 });
     }
 
-    const newUser = new User({ email, password });
+    const newUser = new User({ name, email, phone, password });
     await newUser.save();
     return new Response("User registered successfully", { status: 201 });
   } catch (error) {
