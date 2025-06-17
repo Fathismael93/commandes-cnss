@@ -34,14 +34,13 @@ export async function POST(req) {
         success: false,
         message: "Invalid password",
       });
+    } else {
+      console.log("User logged in successfully", email);
+      return NextResponse.json({
+        success: true,
+        message: "User logged in successfully",
+      });
     }
-
-    console.log("User logged in successfully");
-
-    return NextResponse.json({
-      success: true,
-      message: "User logged in successfully",
-    });
   } catch (error) {
     console.error("Error with user login", error);
     return NextResponse.json({
