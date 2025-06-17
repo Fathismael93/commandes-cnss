@@ -42,69 +42,9 @@ const CNSSContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-green-800 to-blue-800 relative overflow-hidden">
-      {/* Éléments de fond décoratifs */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 border border-white/20 rounded-full"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 border border-green-300/30 rounded-full"></div>
-        <div className="absolute bottom-40 left-1/4 w-16 h-16 border border-blue-300/40 rounded-full"></div>
-        <div className="absolute top-1/3 right-1/3 w-8 h-8 bg-white/10 rounded-full"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-12 h-12 bg-green-400/20 rounded-full"></div>
-      </div>
-
-      {/* Particules flottantes */}
-      <div className="absolute inset-0">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white/30 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
-            }}
-          ></div>
-        ))}
-      </div>
-
-      {/* Navigation simplifiée */}
-      <nav className="relative z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg flex items-center justify-center">
-                <Package className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-white">CNSS PHARMA</h1>
-                <p className="text-xs text-green-200">Sécurité & Confiance</p>
-              </div>
-            </div>
-
-            {/* Liens de navigation */}
-            <div className="hidden md:flex items-center space-x-6">
-              <a
-                href="#"
-                className="text-white hover:text-green-300 transition-colors"
-              >
-                ← Retour à l'accueil
-              </a>
-              <a
-                href="#"
-                className="text-white hover:text-blue-300 transition-colors"
-              >
-                Support
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Contenu principal */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* En-tête */}
+    <>
+      {/* En-tête */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
         <div className="text-center mb-16">
           <h2 className="text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
             Contactez
@@ -485,7 +425,7 @@ const CNSSContactPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
