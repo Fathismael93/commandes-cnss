@@ -27,14 +27,21 @@ export async function POST(req) {
     }
 
     const newUser = new User({ name, email, phone, password });
-    await newUser.save();
+    const user = await newUser.save();
 
-    console.log("User registered successfully");
-
-    return NextResponse.json({
-      success: true,
-      message: "User registered successfully",
-    });
+    if (!user) {
+      console.error("Failed to create user");
+      return NextResponse.json({
+        success: false,
+        message: "Failed to create user",
+      });
+    } else {
+      console.log("User registered successfully");
+      return NextResponse.json({
+        success: true,
+        message: "User registered successfully",
+      });
+    }
   } catch (error) {
     console.error("Error registering user:", error);
     return NextResponse.json({
