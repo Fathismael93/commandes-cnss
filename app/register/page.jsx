@@ -15,6 +15,7 @@ import {
   LogIn,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -30,6 +31,7 @@ const RegisterPage = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const router = useRouter();
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -115,11 +117,7 @@ const RegisterPage = () => {
 
       const data = await res.json();
 
-      console.log("Response from registration:", data);
-      console.log("Is success before the condition:", data.success);
-
       if (data.success) {
-        console.log("Is success in the condition:", data.success);
         router.push("/login");
       }
     } catch (error) {

@@ -13,6 +13,7 @@ import {
   UserPlus,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -24,6 +25,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const router = useRouter();
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -75,11 +77,7 @@ const LoginPage = () => {
 
       const data = await res.json();
 
-      console.log("Login response:", data);
-      console.log("Is success before the condition:", data.success);
-
       if (data.success) {
-        console.log("Is success in the condition:", data.success);
         router.push("/");
       }
     } catch (error) {
