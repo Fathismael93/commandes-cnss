@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
 
 /**
  * Schéma utilisateur avancé avec validation, indexation et méthodes d'instance
