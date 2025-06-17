@@ -24,6 +24,9 @@ export async function POST(req) {
       });
     }
 
+    console.log("User found:", existingUser);
+    console.log("Attempting to validate password for user:", password);
+
     const isPasswordValid = existingUser.password === password;
 
     if (!isPasswordValid) {
