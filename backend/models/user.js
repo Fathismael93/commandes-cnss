@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please enter your password"],
       minLength: [8, "Password must be at least 8 characters"],
       maxLength: [100, "Password cannot exceed 100 characters"],
-      select: false, // Ne pas inclure par défaut dans les requêtes
+      // select: false, // Ne pas inclure par défaut dans les requêtes
     },
     createdAt: {
       type: Date,
