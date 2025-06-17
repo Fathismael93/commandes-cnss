@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Mail,
   Lock,
@@ -14,8 +14,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import AuthContext from "@/context/AuthProvider";
 
 const LoginPage = () => {
+  const { setUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -78,6 +80,7 @@ const LoginPage = () => {
       const data = await res.json();
 
       if (data.success) {
+        setUser(data.data);
         router.push("/");
       }
     } catch (error) {
