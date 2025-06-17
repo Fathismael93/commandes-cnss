@@ -113,7 +113,9 @@ const RegisterPage = () => {
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
+      const data = await res.json();
+
+      if (data.success) {
         router.push("/login");
       }
     } catch (error) {

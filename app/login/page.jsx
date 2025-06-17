@@ -73,11 +73,9 @@ const LoginPage = () => {
         body: JSON.stringify(formData),
       });
 
-      console.log("Response:", res);
       const data = await res.json();
-      console.log("Data:", data);
 
-      if (res.ok) {
+      if (data.success) {
         router.push("/");
       }
     } catch (error) {
