@@ -116,8 +116,10 @@ const RegisterPage = () => {
       const data = await res.json();
 
       console.log("Response from registration:", data);
+      console.log("Is success before the condition:", data.success);
 
       if (data.success) {
+        console.log("Is success in the condition:", data.success);
         router.push("/login");
       }
     } catch (error) {
