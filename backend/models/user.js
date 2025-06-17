@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import { captureException } from "@/monitoring/sentry";
-import logger from "@/utils/logger";
 
 /**
  * Schéma utilisateur avancé avec validation, indexation et méthodes d'instance
