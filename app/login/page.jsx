@@ -6,7 +6,6 @@ import {
   Lock,
   Eye,
   EyeOff,
-  User,
   Shield,
   CheckCircle,
   AlertCircle,
