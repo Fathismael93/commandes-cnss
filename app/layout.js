@@ -96,7 +96,7 @@ export default function RootLayout({ children }) {
                   </Link>
 
                   <Link
-                    href="/presentation"
+                    href="/about"
                     className="text-white hover:text-green-300 transition-colors font-medium"
                   >
                     Présentation
