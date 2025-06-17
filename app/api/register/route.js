@@ -5,21 +5,34 @@ export async function POST(req) {
   await dbConnect();
 
   const { name, email, phone, password } = await req.json();
-  if (!email || !password) {
-    return new Response("Email and password are required", { status: 400 });
+  if (!name || !email || !password || !phone) {
+    return NextResponse.json({
+      success: false,
+      message: "name, email, phone, and password are required",
+    });
   }
 
   try {
     const existingUser = await User.find({ email }).exec();
     if (existingUser) {
-      return new Response("User already exists", { status: 409 });
+      return NextResponse.json({
+        success: false,
+        message: "User with this email already exists",
+      });
     }
 
     const newUser = new User({ name, email, phone, password });
     await newUser.save();
-    return new Response("User registered successfully", { status: 201 });
+
+    return NextResponse.json({
+      success: true,
+      message: "User registered successfully",
+    });
   } catch (error) {
     console.error("Error registering user:", error);
-    return new Response("Internal server error", { status: 500 });
+    return NextResponse.json({
+      success: false,
+      message: "An error occurred while registering the user",
+    });
   }
 }
