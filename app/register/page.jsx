@@ -115,6 +115,8 @@ const RegisterPage = () => {
 
       const data = await res.json();
 
+      console.log("Response from registration:", data);
+
       if (data.success) {
         router.push("/login");
       }
