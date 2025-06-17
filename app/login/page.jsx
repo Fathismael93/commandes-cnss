@@ -65,11 +65,21 @@ const LoginPage = () => {
 
     // Simulation de connexion
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      // Ici vous intégreriez votre logique d'authentification
-      console.log("Connexion réussie", formData);
-      // Redirection après connexion réussie
-      // router.push('/dashboard');
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log("Response:", res);
+      const data = await res.json();
+      console.log("Data:", data);
+
+      if (res.ok) {
+        router.push("/");
+      }
     } catch (error) {
       setErrors({ general: "Erreur de connexion. Veuillez réessayer." });
     } finally {

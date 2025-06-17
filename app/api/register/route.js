@@ -6,7 +6,7 @@ export async function POST(req) {
   await dbConnect();
 
   const { name, email, phone, password } = await req.json();
-  console.log("Received registration data:", { name, email, phone, password });
+
   if (!name || !email || !password || !phone) {
     return NextResponse.json({
       success: false,
@@ -16,6 +16,7 @@ export async function POST(req) {
 
   try {
     const existingUser = await User.findOne({ email }).exec();
+
     if (existingUser) {
       return NextResponse.json({
         success: false,
