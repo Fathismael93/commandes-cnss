@@ -10,7 +10,7 @@ export async function POST(req) {
   }
 
   try {
-    const existingUser = await User.findByEmail(email);
+    const existingUser = await User.find({ email }).exec();
     if (existingUser) {
       return new Response("User already exists", { status: 409 });
     }
