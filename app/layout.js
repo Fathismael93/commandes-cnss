@@ -152,7 +152,7 @@ export default function RootLayout({ children }) {
                   Catalogue
                 </Link>
                 <Link
-                  href="/presentation"
+                  href="/about"
                   className="text-2xl text-white hover:text-green-300 transition-colors font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
