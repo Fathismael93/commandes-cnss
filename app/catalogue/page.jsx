@@ -1,7 +1,8 @@
 import React from "react";
+import ListProducts from "./ListProducts";
 
-const page = () => {
-  return <div>page</div>;
+const CataloguePage = () => {
+  return <ListProducts />;
 };
 
 export default page;
