@@ -16,6 +16,7 @@ import {
   SlidersHorizontal,
   X,
 } from "lucide-react";
+import Link from "next/link";
 import { allProducts } from "@/data/products_pharma_final";
 
 const ListProducts = () => {
@@ -181,17 +182,19 @@ const ListProducts = () => {
                 </button>
               </div>
 
-              {/* Panier */}
-              <div className="relative">
-                <button className="bg-gradient-to-r from-green-500 to-blue-600 text-white p-3 rounded-xl hover:from-green-600 hover:to-blue-700 transition-all duration-300 shadow-lg">
-                  <ShoppingCart className="w-5 h-5" />
-                </button>
-                {getTotalItems() > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
-                    {getTotalItems()}
-                  </span>
-                )}
-              </div>
+              {/* Panier - Navigation vers la page panier */}
+              <Link href="/cart">
+                <div className="relative">
+                  <button className="bg-gradient-to-r from-green-500 to-blue-600 text-white p-3 rounded-xl hover:from-green-600 hover:to-blue-700 transition-all duration-300 shadow-lg">
+                    <ShoppingCart className="w-5 h-5" />
+                  </button>
+                  {getTotalItems() > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                      {getTotalItems()}
+                    </span>
+                  )}
+                </div>
+              </Link>
             </div>
           </div>
 
