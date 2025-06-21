@@ -5,4 +5,4 @@ const CataloguePage = () => {
   return <ListProducts />;
 };
 
-export default page;
+export default CataloguePage;
