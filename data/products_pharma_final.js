@@ -383,3 +383,5 @@ export const allProducts = [
     rating: 4.6,
   },
 ];
+
+export const bigCart = [];

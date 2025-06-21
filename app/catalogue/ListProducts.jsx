@@ -17,7 +17,7 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { allProducts } from "@/data/products_pharma_final";
+import { allProducts, bigCart } from "@/data/products_pharma_final";
 
 const ListProducts = () => {
   const [filteredProducts, setFilteredProducts] = useState(allProducts);
@@ -117,6 +117,10 @@ const ListProducts = () => {
     }, 0);
   };
 
+  const addCartItemsToBigCart = () => {
+    bigCart.push(...cart);
+  };
+
   return (
     <div className="min-h-screen pt-16 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -183,7 +187,7 @@ const ListProducts = () => {
               </div>
 
               {/* Panier - Navigation vers la page panier */}
-              <Link href="/cart">
+              <Link href="/cart" onClick={() => addCartItemsToBigCart()}>
                 <div className="relative">
                   <button className="bg-gradient-to-r from-green-500 to-blue-600 text-white p-3 rounded-xl hover:from-green-600 hover:to-blue-700 transition-all duration-300 shadow-lg">
                     <ShoppingCart className="w-5 h-5" />

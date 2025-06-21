@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   ShoppingCart,
   Plus,
@@ -10,15 +10,14 @@ import {
   Package,
   CreditCard,
   CheckCircle,
-  AlertCircle,
   MapPin,
   Calendar,
   User,
 } from "lucide-react";
 import Link from "next/link";
-import { allProducts } from "@/data/products_pharma_final";
+import { allProducts, bigCart } from "@/data/products_pharma_final";
 
-const Cart = ({ cart = {}, updateCart, removeFromCart }) => {
+const Cart = ({ cart = bigCart || {}, updateCart, removeFromCart }) => {
   const [orderForm, setOrderForm] = useState({
     clientName: "",
     clientEmail: "",
