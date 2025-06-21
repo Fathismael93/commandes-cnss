@@ -19,6 +19,7 @@ import {
 import { allProducts } from "@/data/products_pharma_final";
 
 const ListProducts = () => {
+  console.log("Liste des produits:", allProducts);
   const [filteredProducts, setFilteredProducts] = useState(allProducts);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Tous");
