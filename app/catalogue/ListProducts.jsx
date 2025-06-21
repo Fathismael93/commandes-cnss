@@ -35,9 +35,13 @@ const ListProducts = () => {
     ...new Set(allProducts.map((product) => product.category)),
   ];
 
+  console.log("Catégories:", categories);
+
   // Effet pour filtrer les produits
   useEffect(() => {
     let filtered = allProducts;
+
+    console.log("Filtrage des produits...", filtered.length);
 
     // Filtrage par recherche
     if (searchTerm) {
@@ -51,6 +55,8 @@ const ListProducts = () => {
       );
     }
 
+    console.log("Produits après filtrage par recherche:", filtered.length);
+
     // Filtrage par catégorie
     if (selectedCategory !== "Tous") {
       filtered = filtered.filter(
@@ -58,11 +64,15 @@ const ListProducts = () => {
       );
     }
 
+    console.log("Produits après filtrage par catégorie:", filtered.length);
+
     // Filtrage par prix
     filtered = filtered.filter(
       (product) =>
         product.price >= priceRange[0] && product.price <= priceRange[1]
     );
+
+    console.log("Produits après filtrage par prix:", filtered.length);
 
     // Tri
     filtered.sort((a, b) => {
@@ -81,6 +91,8 @@ const ListProducts = () => {
           return 0;
       }
     });
+
+    console.log("Produits après tri:", filtered.length);
 
     setFilteredProducts(filtered);
   }, [searchTerm, selectedCategory, sortBy, priceRange, allProducts]);
