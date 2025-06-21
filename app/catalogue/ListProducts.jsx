@@ -252,13 +252,13 @@ const ListProducts = () => {
                 {/* Gamme de prix */}
                 <div>
                   <label className="block text-white font-medium mb-3">
-                    Prix: {priceRange[0]}€ - {priceRange[1]}€
+                    Prix: {priceRange[0]} FDJ - {priceRange[1]} FDJ
                   </label>
                   <div className="flex items-center space-x-4">
                     <input
                       type="range"
                       min="0"
-                      max="50"
+                      max="2000"
                       value={priceRange[1]}
                       onChange={(e) =>
                         setPriceRange([0, parseInt(e.target.value)])
@@ -283,7 +283,8 @@ const ListProducts = () => {
             <div className="bg-white/10 backdrop-blur-md rounded-xl px-4 py-2 border border-white/20">
               <span className="text-white font-medium">
                 Panier: {getTotalItems()} article
-                {getTotalItems() > 1 ? "s" : ""} - {getTotalPrice().toFixed(2)}€
+                {getTotalItems() > 1 ? "s" : ""} -{" "}
+                {getTotalPrice().toLocaleString()} FDJ
               </span>
             </div>
           )}
@@ -386,7 +387,7 @@ const ProductCard = ({
 
         <div className="flex items-center justify-between mb-4">
           <span className="text-2xl font-bold text-white">
-            {product.price.toFixed(2)}€
+            {product.price.toLocaleString()} FDJ
           </span>
           <span className="text-white/70 text-sm">Stock: {product.stock}</span>
         </div>
@@ -452,7 +453,7 @@ const ProductListItem = ({
                 <span className="text-white text-sm">{product.rating}</span>
               </div>
               <span className="text-2xl font-bold text-white">
-                {product.price.toFixed(2)}€
+                {product.price.toLocaleString()} FDJ
               </span>
             </div>
           </div>
