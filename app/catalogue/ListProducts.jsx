@@ -16,90 +16,9 @@ import {
   SlidersHorizontal,
   X,
 } from "lucide-react";
+import { allProducts } from "@/data/products_pharma_final";
 
 const ListProducts = () => {
-  // Données d'exemple - à remplacer par l'API
-  const [allProducts] = useState([
-    {
-      id: 1,
-      name: "Paracétamol 500mg",
-      description:
-        "Comprimé analgésique et antipyrétique pour soulager la douleur et la fièvre.",
-      price: 1.5,
-      imageURL:
-        "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300&h=200&fit=crop",
-      category: "Comprimés",
-      stock: 100,
-      rating: 4.8,
-      manufacturer: "Sanofi",
-    },
-    {
-      id: 2,
-      name: "Amoxicilline 500mg",
-      description:
-        "Antibiotique à large spectre pour le traitement des infections bactériennes.",
-      price: 2.3,
-      imageURL:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=200&fit=crop",
-      category: "Antibiotiques",
-      stock: 85,
-      rating: 4.9,
-      manufacturer: "Pfizer",
-    },
-    {
-      id: 3,
-      name: "Insuline Rapide",
-      description:
-        "Insuline à action rapide pour le contrôle de la glycémie chez les diabétiques.",
-      price: 15.75,
-      imageURL:
-        "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=300&h=200&fit=crop",
-      category: "Injectables",
-      stock: 45,
-      rating: 4.7,
-      manufacturer: "Novo Nordisk",
-    },
-    {
-      id: 4,
-      name: "Vaccin COVID-19",
-      description:
-        "Vaccin contre le coronavirus pour la prévention de la COVID-19.",
-      price: 25.0,
-      imageURL:
-        "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300&h=200&fit=crop",
-      category: "Vaccins",
-      stock: 200,
-      rating: 4.9,
-      manufacturer: "Pfizer-BioNTech",
-    },
-    {
-      id: 5,
-      name: "Aspirine 100mg",
-      description:
-        "Comprimé antiagrégant plaquettaire pour la prévention cardiovasculaire.",
-      price: 0.95,
-      imageURL:
-        "https://images.unsplash.com/photo-1576671081837-49000212a370?w=300&h=200&fit=crop",
-      category: "Comprimés",
-      stock: 150,
-      rating: 4.6,
-      manufacturer: "Bayer",
-    },
-    {
-      id: 6,
-      name: "Oméprazole 20mg",
-      description:
-        "Inhibiteur de la pompe à protons pour le traitement des ulcères gastriques.",
-      price: 3.2,
-      imageURL:
-        "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=300&h=200&fit=crop",
-      category: "Gélules",
-      stock: 75,
-      rating: 4.5,
-      manufacturer: "AstraZeneca",
-    },
-  ]);
-
   const [filteredProducts, setFilteredProducts] = useState(allProducts);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Tous");
