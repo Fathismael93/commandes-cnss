@@ -17,7 +17,7 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { allProducts, bigCart } from "@/data/products_pharma_final";
+import { allProducts } from "@/data/products_pharma_final";
 
 const ListProducts = () => {
   const [filteredProducts, setFilteredProducts] = useState(allProducts);
@@ -28,6 +28,24 @@ const ListProducts = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [cart, setCart] = useState({});
   const [priceRange, setPriceRange] = useState([0, 2000]);
+
+  // Charger le panier depuis localStorage au montage du composant
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cnss-pharma-cart");
+    if (savedCart) {
+      try {
+        setCart(JSON.parse(savedCart));
+      } catch (error) {
+        console.error("Erreur lors du chargement du panier:", error);
+        localStorage.removeItem("cnss-pharma-cart");
+      }
+    }
+  }, []);
+
+  // Sauvegarder le panier dans localStorage à chaque modification
+  useEffect(() => {
+    localStorage.setItem("cnss-pharma-cart", JSON.stringify(cart));
+  }, [cart]);
 
   // Récupérer les catégories uniques
   const categories = [
@@ -87,10 +105,13 @@ const ListProducts = () => {
 
   // Fonctions du panier
   const addToCart = (productId) => {
-    setCart((prev) => ({
-      ...prev,
-      [productId]: (prev[productId] || 0) + 1,
-    }));
+    setCart((prev) => {
+      const newCart = {
+        ...prev,
+        [productId]: (prev[productId] || 0) + 1,
+      };
+      return newCart;
+    });
   };
 
   const removeFromCart = (productId) => {
@@ -115,10 +136,6 @@ const ListProducts = () => {
       const product = allProducts.find((p) => p.id === parseInt(productId));
       return total + (product ? product.price * quantity : 0);
     }, 0);
-  };
-
-  const addCartItemsToBigCart = () => {
-    bigCart.push(...cart);
   };
 
   return (
@@ -187,7 +204,7 @@ const ListProducts = () => {
               </div>
 
               {/* Panier - Navigation vers la page panier */}
-              <Link href="/cart" onClick={() => addCartItemsToBigCart()}>
+              <Link href="/cart">
                 <div className="relative">
                   <button className="bg-gradient-to-r from-green-500 to-blue-600 text-white p-3 rounded-xl hover:from-green-600 hover:to-blue-700 transition-all duration-300 shadow-lg">
                     <ShoppingCart className="w-5 h-5" />

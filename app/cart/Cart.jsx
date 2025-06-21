@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ShoppingCart,
   Plus,
@@ -15,10 +15,10 @@ import {
   User,
 } from "lucide-react";
 import Link from "next/link";
-import { allProducts, bigCart } from "@/data/products_pharma_final";
+import { allProducts } from "@/data/products_pharma_final";
 
-const Cart = ({ cart = bigCart || {}, updateCart, removeFromCart }) => {
-  console.log("Cart component rendered with cart:", bigCart);
+const Cart = () => {
+  const [cart, setCart] = useState({});
   const [orderForm, setOrderForm] = useState({
     clientName: "",
     clientEmail: "",
@@ -29,6 +29,24 @@ const Cart = ({ cart = bigCart || {}, updateCart, removeFromCart }) => {
   });
   const [isOrdering, setIsOrdering] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
+
+  // Charger le panier depuis localStorage au montage du composant
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cnss-pharma-cart");
+    if (savedCart) {
+      try {
+        setCart(JSON.parse(savedCart));
+      } catch (error) {
+        console.error("Erreur lors du chargement du panier:", error);
+        localStorage.removeItem("cnss-pharma-cart");
+      }
+    }
+  }, []);
+
+  // Sauvegarder le panier dans localStorage à chaque modification
+  useEffect(() => {
+    localStorage.setItem("cnss-pharma-cart", JSON.stringify(cart));
+  }, [cart]);
 
   // Récupérer les produits du panier avec leurs détails
   const cartItems = Object.entries(cart)
@@ -45,12 +63,33 @@ const Cart = ({ cart = bigCart || {}, updateCart, removeFromCart }) => {
     0
   );
 
-  const handleQuantityChange = (productId, newQuantity) => {
+  // Fonctions de gestion du panier
+  const updateCart = (productId, newQuantity) => {
     if (newQuantity <= 0) {
       removeFromCart(productId);
     } else {
-      updateCart(productId, newQuantity);
+      setCart((prev) => ({
+        ...prev,
+        [productId]: newQuantity,
+      }));
     }
+  };
+
+  const removeFromCart = (productId) => {
+    setCart((prev) => {
+      const newCart = { ...prev };
+      delete newCart[productId];
+      return newCart;
+    });
+  };
+
+  const clearCart = () => {
+    setCart({});
+    localStorage.removeItem("cnss-pharma-cart");
+  };
+
+  const handleQuantityChange = (productId, newQuantity) => {
+    updateCart(productId, newQuantity);
   };
 
   const handleInputChange = (e) => {
@@ -77,9 +116,7 @@ const Cart = ({ cart = bigCart || {}, updateCart, removeFromCart }) => {
       setOrderSuccess(true);
 
       // Vider le panier après commande réussie
-      Object.keys(cart).forEach((productId) => {
-        removeFromCart(parseInt(productId));
-      });
+      clearCart();
 
       // Reset form
       setOrderForm({
