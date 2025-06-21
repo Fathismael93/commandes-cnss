@@ -26,7 +26,7 @@ const ListProducts = () => {
   const [viewMode, setViewMode] = useState("grid");
   const [showFilters, setShowFilters] = useState(false);
   const [cart, setCart] = useState({});
-  const [priceRange, setPriceRange] = useState([0, 1100]);
+  const [priceRange, setPriceRange] = useState([0, 2000]);
 
   // Récupérer les catégories uniques
   const categories = [
