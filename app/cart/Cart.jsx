@@ -18,6 +18,7 @@ import Link from "next/link";
 import { allProducts, bigCart } from "@/data/products_pharma_final";
 
 const Cart = ({ cart = bigCart || {}, updateCart, removeFromCart }) => {
+  console.log("Cart component rendered with cart:", bigCart);
   const [orderForm, setOrderForm] = useState({
     clientName: "",
     clientEmail: "",
